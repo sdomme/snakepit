@@ -53,6 +53,19 @@ follows:
 * Setup any symlinks from `/opt/mypackage/bin` to `/usr/bin`
 * Copy the whole installation into the buildroot
 
+## Using private PyPi index
+
+If you want to use your private PyPi please set the following variables in your yaml:
+```
+pypi_package_name:    package
+symlinks:             ['package']
+pypi_package_version: 1.0
+pypi_package_summary: My package
+pypi_package_licence: private
+pypi_index:           https://private_pypi_url
+```
+In general private index are not able to provide metadata information such as version, summary, licence
+
 ## Installation
 
 It is available from PyPi: https://pypi.python.org/pypi/snakepit

@@ -37,8 +37,8 @@ curl -s https://pypi.python.org/packages/source/p/pip/{{ pip }} | tar xz -C pip 
 cd pip && %{buildroot}/opt/gaius/bin/{{ interpreter }} setup.py install && cd -
 # change to BuildRoot
 cd %{buildroot}
-# use pip to install {{ pypi_package_name }}
-opt/{{ pypi_package_name }}/bin/pip install {{ extra_pip_args }} --no-compile --global-option build_scripts --global-option "--executable=/opt/{{ pypi_package_name }}/bin/python" {{ pypi_package_name }}=={{ pypi_package_version }}
+# use pip to install {{ pypi_package_name }} 
+opt/{{ pypi_package_name }}/bin/pip install {{ extra_pip_args }} --no-compile {{ "--index %s" % pypi_index if pypi_index else '' }} --global-option build_scripts --global-option "--executable=/opt/{{ pypi_package_name }}/bin/python" {{ pypi_package_name }}=={{ pypi_package_version }}
 #cleanup
 opt/{{ pypi_package_name }}/bin/pip uninstall pip setuptools -y --disable-pip-version-check
 
